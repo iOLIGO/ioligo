@@ -1,0 +1,14 @@
+feature	value
+type	DNA
+target_genome	hg19,mm10;gtf1,gtf2
+negative_genome	fa1,fa2,fa3;
+negative_tools	blast;v1.0;default
+temperature	35;45
+temperature_tools	biopython;v1.0;default
+secondary_structure	;0.3
+secondary_structure_tools	nupakc;v1.0;default
+location	fa,gtf
+date	20240417
+author	wangcong
+email	2119452560@qq.com
+other_info	a nice oligo database
