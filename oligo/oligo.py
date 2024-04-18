@@ -1,7 +1,6 @@
 import pandas as pd
 import h5py
 import numpy as np
-from skbio import DNA, RNA
 import json
 
 
@@ -267,7 +266,7 @@ class OLIGO:
             dataset.attrs["author"] = self.author
             dataset.attrs["email"] = self.email
             dataset.attrs["other_info"] = self.other_info
-            dataset.attrs["clomuns"] = json.dumps({col: str(dtype) for col, dtype in self.data.dtypes.items()})
+            dataset.attrs["columns"] = json.dumps({col: str(dtype) for col, dtype in self.data.dtypes.items()})
 
 
 
@@ -276,17 +275,128 @@ class OLIGO5:
     """
     def __init__(self, name):
         self.name = name
-        self.group = []
         self.oligos = {}
     
     def to_oligo5(self, name=None, out_dir="./"):
+
+        if name:
+            file_name = name
+        else:
+            file_name = self.name
+
+        with h5py.File(f"{out_dir}/{file_name}.oligo5", "w") as f:
+            for group, oligos in self.oligos.items():
+                group = f.create_group(group)
+                for oligo in oligos:
+                    dataset = group.create_dataset(oligo.name, data=oligo.data.astype("str").values)
+                    dataset.attrs["name"] = oligo.name
+                    dataset.attrs["type"] = oligo.type
+                    dataset.attrs["target_genome"] = json.dumps(oligo.target_genome)
+                    dataset.attrs["negative_genome"] = json.dumps(oligo.negative_genome)
+                    dataset.attrs["negative_tools"] = json.dumps(oligo.negative_tools)
+                    dataset.attrs["temperature"] = json.dumps(oligo.temperature)
+                    dataset.attrs["temperature_tools"] = json.dumps(oligo.temperature_tools)
+                    dataset.attrs["secondary_structure"] = json.dumps(oligo.secondary_structure)
+                    dataset.attrs["secondary_structure_tools"] = json.dumps(oligo.secondary_structure_tools)
+                    dataset.attrs["location"] = json.dumps(oligo.location)
+                    dataset.attrs["date"] = oligo.date
+                    dataset.attrs["author"] = oligo.author
+                    dataset.attrs["email"] = oligo.email
+                    dataset.attrs["other_info"] = oligo.other_info
+                    dataset.attrs["columns"] = json.dumps({col: str(dtype) for col, dtype in oligo.data.dtypes.items()})       
         return
+    
     
     def read(self, oligo5_file):
+        
+        with h5py.File(oligo5_file, "r") as f:
+            for group in f:
+                if group in self.oligos:
+                    oligos = self.oligos[group]
+                    oligos_name = []
+                    for oligo in oligos:
+                        oligos_name.append(oligo.name)
+                else:
+                    oligos = []
+                for dataset_name in f[group]:
+                    if dataset_name in oligos_name:
+                        raise ValueError(f"{dataset_name} already exists in {group}")
+                    else:
+                        dataset = f[group][dataset_name]
+                        oligo = OLIGO(dataset.attrs["name"])
+                        oligo.group = group
+                        oligo.type = dataset.attrs["type"]
+                        oligo.target_genome = json.loads(dataset.attrs["target_genome"])
+                        oligo.negative_genome = json.loads(dataset.attrs["negative_genome"])
+                        oligo.negative_tools = json.loads(dataset.attrs["negative_tools"])
+                        oligo.temperature = json.loads(dataset.attrs["temperature"])
+                        oligo.temperature_tools = json.loads(dataset.attrs["temperature_tools"])
+                        oligo.secondary_structure = json.loads(dataset.attrs["secondary_structure"])
+                        oligo.secondary_structure_tools = json.loads(dataset.attrs["secondary_structure_tools"])
+                        oligo.location = json.loads(dataset.attrs["location"])
+                        oligo.date = dataset.attrs["date"]
+                        oligo.author = dataset.attrs["author"]
+                        oligo.email = dataset.attrs["email"]
+                        oligo.other_info = dataset.attrs["other_info"]
+                        np_data = dataset.asstr()[:]
+                        columns_dict = json.loads(dataset.attrs["columns"])
+                        df_data = pd.DataFrame(np_data, columns=columns_dict.keys())
+                        self.data = df_data.astype(columns_dict)
+                        oligos.append(oligo)
+                self.oligos[group] = oligos
         return
     
-    def read_oligos(self, ):
+    # oligos -> list
+    def read_soligo(self, oligos):
+        
+        for oligo in oligos:
+
+            if oligo.group:
+                group = oligo.group
+            else:
+                group = f"G_{oligo.name}"
+
+            if group in self.oligos:
+                list_oligos = self.oligos[group]
+                list_oligos.append(oligo)
+                self.oligos[group] = list_oligos
+            else:
+                self.oligos[group] = [oligo]
+
         return
     
-    def read_oligof(self, ):
+    # oligo_files: dict[name]=oligo_file
+    def read_foligo(self, oligo_files):
+
+        list_oligos = []
+        for name,oligo_file in oligo_files:
+            oligo = OLIGO(name)
+            oligo.read(oligo_file)
+            list_oligos.append(oligo)
+        self.read_soligo(list_oligos)
+        return
+    
+
+    def read_doligo(self, oligo_dir):
+
+        import glob
+        oligo_files = glob.glob(f"{oligo_dir}/*.oligo")
+        dict_oligos = {}
+        for oligo_file in oligo_files:
+            name = oligo_file.split("/")[-1].split(".oligo")[0]
+            dict_oligos[name] = oligo_files
+        
+        self.read_foligo(dict_oligos)
+
+        return
+    
+    def del_group(self, group):
+
+        self.oligos.pop(group)
+
+        return
+    
+    def del_oligo(self, group, oligo):
+        new_oligos = self.oligos[group].remove(oligo)
+        self.oligos[group] = new_oligos
         return
