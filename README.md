@@ -48,6 +48,13 @@ attrs -> [columns, index, type, date, target_genome, negative_genome, temperatur
 14. other_info -> 'a nice oligo database'
 
 
+### data
+
+df.dtype  raw -> str ; str -> np.array -> b'str'
+
+df.dtype  str -> raw ; b'str' -> str -> df
+
+
 ## requirements.txt
 
 conda envirment oligo

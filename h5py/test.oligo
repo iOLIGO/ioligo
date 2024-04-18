@@ -1,0 +1,23 @@
+#type	DNA
+#target_genome	hg19,mm10;gtf1,gtf2
+#negative_genome	fa1,fa2,fa3;
+#negative_tools	blast;v1.0;default
+#temperature	35.0;45.0
+#temperature_tools	biopython;v1.0;default
+#secondary_structure	;0.3
+#secondary_structure_tools	nupakc;v1.0;default
+#location	fa;gtf
+#data	20240417
+#author	wangcong
+#email	2119452560@qq.com
+#other_info	a nice oligo database
+name	oligo	temperature	secondary_structure	chr	start
+seq1	AACCGGTGATCGTATAGCTAGTCGTA	40	0.11	chr1	10
+seq2	AACCGGTGACTGGATAGCTAGTCGTA	42	0.15	chr2	150
+seq3	AACCGGTGATCGTATCCGTAGTCGTA	44	0.17	chr1	200
+seq4	AACCGGTTGCCGTATAGCTAGTCGTA	36	0.12	chr4	10
+seq5	AACCGGTGATCGTAAAGCTAGTCGTA	39	0.22	chr1	1000
+seq6	AACCGTTAGTCGTATAGCTAGTCGTA	38	0.27	chr3	5000
+seq7	AACCGGTGATCGTATCCGAAGTCGTA	41	0.03	chr2	2500
+seq8	AACCGGTGGGACTATAGCTAGTCGTA	43	0.17	chr1	900
+seq9	AACCGGTGATCGTATATTGGGTCGTA	45	0.08	chr4	4000

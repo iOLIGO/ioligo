@@ -7,7 +7,7 @@ temperature	35;45
 temperature_tools	biopython;v1.0;default
 secondary_structure	;0.3
 secondary_structure_tools	nupakc;v1.0;default
-location	fa,gtf
+location	fa;gtf
 date	20240417
 author	wangcong
 email	2119452560@qq.com
