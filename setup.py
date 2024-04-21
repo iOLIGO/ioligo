@@ -54,7 +54,7 @@ setup(
     keywords=keywords,
     url='https://github.com/GangCaoLab/CoolBox',
     packages=find_packages(),
-    scripts=['scripts/coolbox'],
+    scripts=['scripts/oligo'],
     include_package_data=True,
     zip_safe=False,
     classifiers=classifiers,
