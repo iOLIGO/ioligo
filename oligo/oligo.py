@@ -7,12 +7,15 @@ import os
 
 def Mk_no_dir(dir, recover="N"):
     if os.path.exists(dir):
-        if recover == "N":
-            print(f"error {dir} exist")
+        if dir == "./":
+            pass
         else:
-            print(f"warning {dir} will be recovered")
-            os.rmdir(dir)
-            os.mkdir(dir)
+            if recover == "N":
+                print(f"warning {dir} exist")
+            else:
+                print(f"warning {dir} will be recovered")
+                os.rmdir(dir)
+                os.mkdir(dir)
     else:
         os.mkdir(dir)
 
@@ -65,46 +68,46 @@ class OLIGO:
                     self.group = value
                 elif feature == "origin":
                     if len_value > 0:
-                        self.origin["fa"].append(value.split(";")[0].split(","))
+                        self.origin["fa"] += value.split(";")[0].split(",")
                     if len_value > 1:
-                        self.origin["gtf"].append(value.split(";")[1].split(","))
+                        self.origin["gtf"] += value.split(";")[1].split(",")
                     if len_value > 2:
-                        self.origin["location"].append(value.split(";")[2].split(","))
+                        self.origin["location"] += value.split(";")[2].split(",")
                 elif feature == "origin_tools":
                     if len_value > 0:
-                        self.origin_tools["tools"].append(value.split(";")[0])
+                        self.origin_tools["tools"] += value.split(";")[0].split(",")
                     if len_value > 1:
-                        self.origin_tools["version"].append(value.split(";")[1])
+                        self.origin_tools["version"] += value.split(";")[1].split(",")
                     if len_value > 2:
-                        self.origin_tools["params"].append(value.split(";")[2])
+                        self.origin_tools["params"] += value.split(";")[2].split(",")
                 elif feature == "target":
                     if len_value > 0:
-                        self.target["fa"] = value.split(";")[0].split(",")
+                        self.target["fa"] += value.split(";")[0].split(",")
                     if len_value > 1:
-                        self.target["gtf"] = value.split(";")[1].split(",")
+                        self.target["gtf"] += value.split(";")[1].split(",")
                     if len_value > 2:
-                        self.target["location"] = value.split(";")[2].split(",")
+                        self.target["location"] += value.split(";")[2].split(",")
                 elif feature == "target_tools":
                     if len_value > 0:
-                        self.target_tools["tools"].append(value.split(";")[0])
+                        self.target_tools["tools"] += value.split(";")[0].split(",")
                     if len_value > 1:
-                        self.target_tools["version"].append(value.split(";")[1])
+                        self.target_tools["version"] += value.split(";")[1].split(",")
                     if len_value > 2:
-                        self.target_tools["params"].append(value.split(";")[2])
+                        self.target_tools["params"] += value.split(";")[2].split(",")
                 elif feature == "negative":
                     if len_value > 0:
-                        self.negative["fa"].append(value.split(";")[0].split(","))
+                        self.negative["fa"] += value.split(";")[0].split(",")
                     if len_value > 1:
-                        self.negative["gtf"].append(value.split(";")[1].split(","))
+                        self.negative["gtf"] += value.split(";")[1].split(",")
                     if len_value > 1:
-                        self.negative["gtf"].append(value.split(";")[1].split(","))
+                        self.negative["gtf"] += value.split(";")[1].split(",")
                 elif feature == "negative_tools":
                     if len_value > 0:
-                        self.negative_tools["tools"].append(value.split(";")[0])
+                        self.negative_tools["tools"] += value.split(";")[0].split(",")
                     if len_value > 1:
-                        self.negative_tools["version"].append(value.split(";")[1])
+                        self.negative_tools["version"] += value.split(";")[1].split(",")
                     if len_value > 2:
-                        self.negative_tools["params"].append(value.split(";")[2])
+                        self.negative_tools["params"] += value.split(";")[2].split(",")
                 elif feature == "temp":
                     if len_value > 0:
                         if value.split(";")[0]:
@@ -159,46 +162,46 @@ class OLIGO:
                         self.group = value
                     elif feature == "origin":
                         if len_value > 0:
-                            self.origin["fa"].append(value.split(";")[0].split(","))
+                            self.origin["fa"] += value.split(";")[0].split(",")
                         if len_value > 1:
-                            self.origin["gtf"].append(value.split(";")[1].split(","))
+                            self.origin["gtf"] += value.split(";")[1].split(",")
                         if len_value > 2:
-                            self.origin["location"].append(value.split(";")[2].split(","))
+                            self.origin["location"] += value.split(";")[2].split(",")
                     elif feature == "origin_tools":
                         if len_value > 0:
-                            self.origin_tools["tools"].append(value.split(";")[0])
+                            self.origin_tools["tools"] += value.split(";")[0].split(",")
                         if len_value > 1:
-                            self.origin_tools["version"].append(value.split(";")[1])
+                            self.origin_tools["version"] += value.split(";")[1].split(",")
                         if len_value > 2:
-                            self.origin_tools["params"].append(value.split(";")[2])
+                            self.origin_tools["params"] += value.split(";")[2].split(",")
                     elif feature == "target":
                         if len_value > 0:
-                            self.target["fa"] = value.split(";")[0].split(",")
+                            self.target["fa"] += value.split(";")[0].split(",")
                         if len_value > 1:
-                            self.target["gtf"] = value.split(";")[1].split(",")
+                            self.target["gtf"] += value.split(";")[1].split(",")
                         if len_value > 2:
-                            self.target["location"] = value.split(";")[2].split(",")
+                            self.target["location"] += value.split(";")[2].split(",")
                     elif feature == "target_tools":
                         if len_value > 0:
-                            self.target_tools["tools"].append(value.split(";")[0])
+                            self.target_tools["tools"] += value.split(";")[0].split(",")
                         if len_value > 1:
-                            self.target_tools["version"].append(value.split(";")[1])
+                            self.target_tools["version"] += value.split(";")[1].split(",")
                         if len_value > 2:
-                            self.target_tools["params"].append(value.split(";")[2])
+                            self.target_tools["params"] += value.split(";")[2].split(",")
                     elif feature == "negative":
                         if len_value > 0:
-                            self.negative["fa"].append(value.split(";")[0].split(","))
+                            self.negative["fa"] += value.split(";")[0].split(",")
                         if len_value > 1:
-                            self.negative["gtf"].append(value.split(";")[1].split(","))
+                            self.negative["gtf"] += value.split(";")[1].split(",")
                         if len_value > 1:
-                            self.negative["gtf"].append(value.split(";")[1].split(","))
+                            self.negative["gtf"] += value.split(";")[1].split(",")
                     elif feature == "negative_tools":
                         if len_value > 0:
-                            self.negative_tools["tools"].append(value.split(";")[0])
+                            self.negative_tools["tools"] += value.split(";")[0].split(",")
                         if len_value > 1:
-                            self.negative_tools["version"].append(value.split(";")[1])
+                            self.negative_tools["version"] += value.split(";")[1].split(",")
                         if len_value > 2:
-                            self.negative_tools["params"].append(value.split(";")[2])
+                            self.negative_tools["params"] += value.split(";")[2].split(",")
                     elif feature == "temp":
                         if len_value > 0:
                             if value.split(";")[0]:
@@ -231,6 +234,10 @@ class OLIGO:
                         warnings.warn(f"{feature} is not in oligo format, will be ignored!", UserWarning)
                 else:
                     break
+        
+        if not self.group:
+            warnings.warn(f"oligo group is not exists, use defualt name", UserWarning)
+            self.group = f"G-{self.name}"
         
         self.data = pd.read_csv(oligo_file, sep="\t", comment='#')
 
@@ -426,9 +433,9 @@ class OLIGO5:
         
         with h5py.File(oligo5_file, "r") as f:
             for group in f:
+                oligos_name = []
                 if group in self.oligos:
                     oligos = self.oligos[group]
-                    oligos_name = []
                     for oligo in oligos:
                         oligos_name.append(oligo.name)
                 else:
@@ -459,7 +466,7 @@ class OLIGO5:
                         np_data = dataset.asstr()[:]
                         columns_dict = json.loads(dataset.attrs["columns"])
                         df_data = pd.DataFrame(np_data, columns=columns_dict.keys())
-                        self.data = df_data.astype(columns_dict)
+                        oligo.data = df_data.astype(columns_dict)
                         oligos.append(oligo)
                 self.oligos[group] = oligos
         return

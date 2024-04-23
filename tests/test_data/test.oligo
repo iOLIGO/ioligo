@@ -1,12 +1,12 @@
 #name	sample
 #group	G-sample
 #type	DNA
-#origin	hg19,mm10;gtf1,gtf2;chr1:0:5000:+,chr2:2000:3000:-
-#origin_tools	tools;version;params
+#origin	hg19,mm10;gtf1,gtf2;1:chr1:0:5000:+,1:chr2:2000:3000:-
+#origin_tools	tools1,tools2;version1,version2;params1,params2
 #target	hg19,mm10;gtf1,gtf2;chr1:100:2000:+
-#target_tools	tools;version;params
-#negative	fa1,fa2,fa3;gtf3;gtf4;
-#negative_tools	blast;v1.0;default
+#target_tools	tools1,tools2;version1,version2;params1,params2
+#negative	fa1,fa2,fa3;gtf3,gtf4;
+#negative_tools	blast,blast;v1.0,v1.0;default,default
 #temp	35.0;45.0
 #temp_tools	biopython;v1.0;default
 #ss	;0.3

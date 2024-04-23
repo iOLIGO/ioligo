@@ -52,7 +52,7 @@ setup(
     description='oligo toolkit.',
     long_description=get_long_description(),
     keywords=keywords,
-    url='https://github.com/GangCaoLab/CoolBox',
+    url='https://github.com/iOLIGO/oligo',
     packages=find_packages(),
     scripts=['scripts/oligo'],
     include_package_data=True,
