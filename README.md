@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="./docs/imgs/html_tag.png">
+<img src="./docs/imgs/oligo_logo.png">
 
 </div>
 
