@@ -6,7 +6,8 @@ theme: material
 
 nav:
   - Home: index.md
-  - Basic Usage: basic_usage.md
+  - Oligo Usage: oligo.md
+  - Oligo5 Usage: oligo5.md
 
 
 markdown_extensions:
