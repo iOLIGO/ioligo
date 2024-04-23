@@ -9,7 +9,7 @@ Python object for reading oligo files
 ```python
 
 from oligo import OLIGO
-oligo_file = "tests/test_data/test.oligo"
+oligo_file = "tests/test_data/oligo/test.oligo"
 oligo_test = OLIGO()
 oligo_test.read(oligo_file)
 oligo_test.name 
@@ -24,6 +24,8 @@ oligo_test.to_oligo()
 # ./sample.oligo
 oligo_test.to_oligo5()
 # ./sample.oligo5
+oligo_test.help()
+# "more info: https://github.com/iOLIGO/oligo/blob/main/docs/oligo.md"
 ```
 
 
@@ -50,7 +52,6 @@ All start with '#', which records the characteristic information of the oligonuc
 |author|info|ilead-cong|
 |email|info|2119452560@qq.com|
 |other_info|info|nice oligo|
-| | |
 
 
 ### name

@@ -379,6 +379,9 @@ class OLIGO:
             dataset.attrs["email"] = self.email
             dataset.attrs["other_info"] = self.other_info
             dataset.attrs["columns"] = json.dumps({col: str(dtype) for col, dtype in self.data.dtypes.items()})
+    
+    def help():
+        print("more info: https://github.com/iOLIGO/oligo/blob/main/docs/oligo.md")
 
 
 class OLIGO5:
@@ -520,3 +523,6 @@ class OLIGO5:
         new_oligos = self.oligos[group].remove(oligo)
         self.oligos[group] = new_oligos
         return
+    
+    def help():
+        print("more info: https://github.com/iOLIGO/oligo/blob/main/docs/oligo5.md")

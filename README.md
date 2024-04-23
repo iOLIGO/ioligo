@@ -1,69 +1,66 @@
-# oligo
-oligo format tools based on h5df
+<img src="./docs/imgs/html_tag.png">
+
+Currently, there are very few file formats and database formats for saving oligonucleotides (probes). Most files are saved in bed or tsv format. However, this is extremely unfriendly for recording the source of oligonucleotides and subsequent processing in standard procedures.
+
+## Features
+
+oligo can change this situation. 
+
++ oligo: simultaneously record the sequence information and characteristic information of the oligonucleotide in oligo format, such as the source species, which tools are used, and parameter design.
++ oligo5: one or more oligonucleotide files are designed to be compressed and saved in the oligo5 format based on the h5 file format.
+
+## Installation
+
+### pip
+
+To install oligo with pip:
+
+```python
+
+pip install oligo
+
+```
+
+### github
+
+To install oligo with github:
+
+#### git clone from github
+
+```shell
+
+git clone git@github.com:iOLIGO/oligo.git
+
+```
+
+#### installation in python
+
+```python
+
+pip install oligo/dist/oligo-1.0.0.tar.gz
+
+```
+
+## Example
+
+### CLI
+
+```shell
+
+oligo --help
+
+```
+
+### API
+
+```python
+
+from oligo import OLIGO,OLIGO5
+
+```
 
 
-## oligo format
+### More usage help
 
-### groups
-
-groups -> [oligo1, oligo2, ..., oligon]
-
-### attrs
-attrs -> [columns, index, type, date, target_genome, negative_genome, temperature, temperature_info, secondary_structure, secondary_structure_info, location, date, author, email, other_info]
-
-1. columns -> [nameid, oligobase, temperature, secondary_structure, chrid, start, end...]
-
-2. index(name_listid) -> [oligoid1, oligoid2,..., oligon]
-
-3. type -> 'DNA' or 'RNA'
-
-4. target_genome -> dict_URL: keys=['fa', 'gtf', 'nt', '16sRNA']; values=['URL1',..., 'URL2']
-
-    4.1 nt: nt_URL
-
-    4.2 16sRNA: 16sRNA_URL
-
-5. negative_genome -> dict_URL: keys=['fa', 'gtf', 'nt', '16sRNA']; values=['URL1',..., 'URL2']
-
-    5.1. nt: ntid
-
-    5.2. 16sRNA: datbaseid
-
-6. temperature -> (t_low, t_high)
-
-7. temperature_info -> (tools, version, params)
-
-8. secondary_structure -> (s_low, s_high)
-
-9. secondary_structure_info -> (tools, version, params)
-
-10. location -> (fa_URL, gtf_URL, 'chr1,chr2,chr3')
-
-11. date -> '20240417'
-
-12. author -> 'wangcong'
-
-13. email -> '2119452560@qq.com'
-
-14. other_info -> 'a nice oligo database'
-
-
-### data
-
-df.dtype  raw -> str ; str -> np.array -> b'str'
-
-df.dtype  str -> raw ; b'str' -> str -> df
-
-
-## requirements.txt
-
-conda envirment oligo
-
-conda install anaconda::scikit-bio
-
-conda install anaconda::h5py
-
-
-
-
-
+- [oligo](https://github.com/iOLIGO/oligo/blob/main/docs/oligo.md)
+- [oligo5](https://github.com/iOLIGO/oligo/blob/main/docs/oligo5.md)
