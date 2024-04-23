@@ -1,6 +1,10 @@
-# oligo5
+<div align="center">
 
-The oligo database file based on the h5 file structure can contain one or more oligo files.
+<img src="./docs/imgs/oligo_logo.png">
+
+<p> The oligo database file based on the h5 file structure can contain one or more oligo files(tests/test_data/sample.oligo5). </p>
+
+</div>
 
 ## OLIGO5
 

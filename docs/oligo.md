@@ -1,6 +1,10 @@
-# oligo
+<div align="center">
 
-Oligo is essentially a txt file, contains head and body. Sample file is in path(tests/test_data/test.oligo)
+<img src="./docs/imgs/oligo_logo.png">
+
+<p> Oligo is essentially a txt file, contains head and body. Sample file is in path(tests/test_data/test.oligo) </p>
+
+</div>
 
 ## OLIGO
 
