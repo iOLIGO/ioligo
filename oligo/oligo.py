@@ -475,7 +475,7 @@ class OLIGO5:
         return
     
     # oligos -> list
-    def read_soligo(self, oligos):
+    def read_soligo(self, *oligos):
         
         for oligo in oligos:
 
