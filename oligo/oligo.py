@@ -524,5 +524,22 @@ class OLIGO5:
         self.oligos[group] = new_oligos
         return
     
+    def info(self, info_file=None):
+        if info_file:
+            info_file_ = info_file
+        else:
+            info_file_ = f"{self.name}_info.tsv"
+        with open(info_file_, "w") as f:
+            f.write("groups\toligos\tnumbers\n")
+            for group, oligos in self.oligos.items():
+                oligo_names = []
+                oligo_numbers = []
+                for oligo in oligos:
+                    oligo_names.append(oligo.name)
+                    oligo_numbers.append(str(oligo.data.shape[0]))
+                f.write(f"{group}\t{",".join(oligo_names)}\t{",".join(oligo_numbers)}\n")
+
+        return
+
     def help():
         print("more info: https://github.com/iOLIGO/oligo/blob/main/docs/oligo5.md")
