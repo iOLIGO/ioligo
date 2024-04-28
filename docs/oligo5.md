@@ -28,7 +28,20 @@ oligo5_test.oligos["G-sample"][0].name
 # 'sample'
 olgio5_test.help()
 # "more info: https://github.com/iOLIGO/oligo/blob/main/docs/oligo5.md"
+oligo5_test.info()
+# 'test_info.tsv'
 ```
+
+### info foramte
+
+|groups|oligos|number|
+|:----:|:----:|:----:|
+|group1|oligo1,oligo2,...oligon|number1,number2,...,numbern|
+|group2|oligo1,oligo2,...oligon|number1,number2,...,numbern|
+| ... | ... | ... |
+|groupn|oligo1,oligo2,...oligon|number1,number2,...,numbern|
+
+
 
 ## More usage
 
