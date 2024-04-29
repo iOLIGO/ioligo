@@ -164,7 +164,8 @@ class OLIGO:
                         if len_value > 0:
                             self.origin["fa"] += value.split(";")[0].split(",")
                         if len_value > 1:
-                            self.origin["gtf"] += value.split(";")[1].split(",")
+                            if value.split(";")[1]:
+                                self.origin["gtf"] += value.split(";")[1].split(",")
                         if len_value > 2:
                             self.origin["location"] += value.split(";")[2].split(",")
                     elif feature == "origin_tools":
@@ -178,7 +179,8 @@ class OLIGO:
                         if len_value > 0:
                             self.target["fa"] += value.split(";")[0].split(",")
                         if len_value > 1:
-                            self.target["gtf"] += value.split(";")[1].split(",")
+                            if value.split(";")[1]:
+                                self.target["gtf"] += value.split(";")[1].split(",")
                         if len_value > 2:
                             self.target["location"] += value.split(";")[2].split(",")
                     elif feature == "target_tools":
@@ -192,7 +194,8 @@ class OLIGO:
                         if len_value > 0:
                             self.negative["fa"] += value.split(";")[0].split(",")
                         if len_value > 1:
-                            self.negative["gtf"] += value.split(";")[1].split(",")
+                            if value.split(";")[1]:
+                                self.negative["gtf"] += value.split(";")[1].split(",")
                         if len_value > 1:
                             self.negative["gtf"] += value.split(";")[1].split(",")
                     elif feature == "negative_tools":
@@ -275,6 +278,8 @@ class OLIGO:
                     str_w = str_w + ",".join(self.origin["fa"])
                 if len(self.origin)["gtf"] > 0:
                     str_w = str_w + ";" + ",".join(self.origin["gtf"])
+                else:
+                    str_w = str_w + ";"
                 if len(self.origin["location"]) > 0:
                     str_w = str_w + ";" + ",".join(self.origin["location"])
                 f.write(f"#origin\t{str_w}\n")
@@ -290,6 +295,8 @@ class OLIGO:
                     str_w = str_w + ",".join(self.target["fa"])
                 if len(self.target)["gtf"] > 0:
                     str_w = str_w + ";" + ",".join(self.target["gtf"])
+                else:
+                    str_w = str_w + ";"
                 if len(self.target["location"]) > 0:
                     str_w = str_w + ";" + ",".join(self.target["location"])
                 f.write(f"#origin_tools\t{str_w}\n")
@@ -305,6 +312,8 @@ class OLIGO:
                     str_w = str_w + ",".join(self.negative["fa"])
                 if len(self.negative)["gtf"] > 0:
                     str_w = str_w + ";" + ",".join(self.negative["gtf"])
+                else:
+                    str_w = str_w + ";"
                 if len(self.negative["location"]) > 0:
                     str_w = str_w + ";" + ",".join(self.negative["location"])
                 f.write(f"#negative\t{str_w}\n")
