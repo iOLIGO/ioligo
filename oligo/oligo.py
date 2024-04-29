@@ -30,8 +30,8 @@ def Mk_no_dir(dir, recover="N"):
 class OLIGO:
     """
     """
-    def __init__(self):
-        self.name = ""
+    def __init__(self, name=None):
+        self.name = name
         self.group = ""
         self.type = ""
         self.date = ""
@@ -396,7 +396,7 @@ class OLIGO:
 class OLIGO5:
     """
     """
-    def __init__(self, name):
+    def __init__(self, name=None):
         self.name = name
         self.oligos = {}
     
