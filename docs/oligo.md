@@ -72,15 +72,15 @@ types of oligonucleotides: DNA or RNA.
 
 ### origin
 
-The source of oligonucleotides, including genome, annotation, and location. The three are separated by semicolons, like '{genome;annotation;location}' or '{genome1,genome2,genome3;annotation1,annotation2,annotation3;location1,location2,location3}'. More info: genome1 <-> annotation1 <-> location1.
+The source of oligonucleotides, including genome, annotation, and location. The three are separated by semicolons, like '`{genome;annotation;location}`' or '`{genome1,genome2,genome3;annotation1,annotation2,annotation3;location1,location2,location3}`'. More info: 'genome1 <-> annotation1 <-> location1'.
 
-- genome: Record the identity information of the reference genome fa file, such as version name or download address, separated by commas, like '{fa1_URL,fa2_URL,fa3_version}'.
+- genome: Record the identity information of the reference genome fa file, such as version name or download address, separated by commas, like '`{fa1_URL,fa2_URL,fa3_version}`'.
 
-- annotation: Record the identity information of the reference genome gtf file, such as version name or download address, separated by commas, like '{gtf1_URL,gtf2_URL,fa3_version}'.
+- annotation: Record the identity information of the reference genome gtf file, such as version name or download address, separated by commas, like '`{gtf1_URL,gtf2_URL,fa3_version}`'.
 
-- location: Record the identity information of the reference genome location information,separated by commas, like '{location1,location2,location3}'.
+- location: Record the identity information of the reference genome location information,separated by commas, like '`{location1,location2,location3}`'.
 
-- more info: The location attribute consists of genomeid, chromosome name, starting position, ending position, and positive and negative strands, separated by colons, like '{geonemid,chrom,start,end,strand}' or '{genomeid,all}'.
+- more info: The location attribute consists of genomeid, chromosome name, starting position, ending position, and positive and negative strands, separated by colons, like '`{geonemid,chrom,start,end,strand}`' or '`{genomeid,all}`'.
 
 ### target
 
@@ -92,7 +92,7 @@ The negative target region targeted by the oligonucleotide. The format refers to
 
 ### origin_tools
 
-Record the tools used by origin, including tool name, version, and parameters, separated by semicolons, like '{tools;version;params}' or '{tools1,tools2;version1,version2;param1,param2}'.
+Record the tools used by origin, including tool name, version, and parameters, separated by semicolons, like '`{tools;version;params}`' or '`{tools1,tools2;version1,version2;param1,param2}`'.
 
 More info: if the location attribute of the origin exists, it corresponds to one; otherwise, it corresponds to the genome attribute.
 
@@ -106,19 +106,19 @@ Record the tools used by negative, the format refers to the origin_tools attribu
 
 ### temp
 
-Binding temperature of oligonucleotide and its reverse complement, like '{low,high}'
+Binding temperature of oligonucleotide and its reverse complement, like '`{low,high}`'
 
 ### temp_tools
 
-Record the tools used by temp, like '{tools,version,param}'
+Record the tools used by temp, like '`{tools,version,param}`'
 
 ### ss
 
-Probability of oligonucleotides forming secondary structures, like '{low,high}'
+Probability of oligonucleotides forming secondary structures, like '`{low,high}`'
 
 ### ss_tools
 
-Record the tools used by ss, like '{tools,version,param}'
+Record the tools used by ss, like '`{tools,version,param}`'
 
 ### date
 

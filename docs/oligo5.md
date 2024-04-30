@@ -32,7 +32,7 @@ oligo5_test.info()
 # 'test_info.tsv'
 ```
 
-### info foramte
+### info formate
 
 |groups|oligos|number|
 |:----:|:----:|:----:|
