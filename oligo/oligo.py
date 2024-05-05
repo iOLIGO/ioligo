@@ -1,5 +1,5 @@
 import pandas as pd
-import warnings
+from loguru import logger
 import h5py
 import json
 
@@ -137,7 +137,7 @@ class OLIGO:
                 elif feature == "other_info":
                     self.other_info = value
                 else:
-                    warnings.warn(f"{feature} is not in oligo format, will be ignored!", Warning)
+                    logger.warning(f"{feature} is not in oligo format, will be ignored!", Warning)
         
         df_data = pd.read_csv(data, sep="\t")
 
@@ -234,12 +234,12 @@ class OLIGO:
                     elif feature == "other_info":
                         self.other_info = value
                     else:
-                        warnings.warn(f"{feature} is not in oligo format, will be ignored!", Warning)
+                        logger.warning(f"{feature} is not in oligo format, will be ignored!")
                 else:
                     break
         
         if not self.group:
-            warnings.warn(f"oligo group is not exists, use defualt name", Warning)
+            logger.warning(f"oligo group is not exists, use defualt name")
             self.group = f"G-{self.name}"
         
         self.data = pd.read_csv(oligo_file, sep="\t", comment='#')
@@ -259,17 +259,18 @@ class OLIGO:
             if self.name:
                 f.write(f"#name\t{self.name}\n")
             else:
+                logger.error("oligo name is not exists")
                 raise ValueError("oligo name is not exists!")
             
             if self.group:
                 f.write(f"#group\t{self.group}\n")
             else:
-                warnings.warn(f"oligo group is not exists!", Warning)
+                logger.warning(f"oligo group is not exists!")
             
             if self.type:
                 f.write(f"#type\t{self.type}\n")
             else:
-                warnings.warn(f"oligo type is not exists!", Warning)
+                logger.warning(f"oligo type is not exists!")
             
             
             if not all(value == '' or value is None or (isinstance(value, (list, dict)) and not value) for value in self.origin.values()):
@@ -287,7 +288,7 @@ class OLIGO:
                 if not all(value == '' or value is None or (isinstance(value, (list, dict)) and not value) for value in self.origin_tools.values()):
                     f.write(f"#origin_tools\t" + ";".join([self.origin_tools["tools"], self.origin_tools["version"], self.origin_tools["params"]]) + "\n")
                 else:
-                    warnings.warn(f"oligo origin is exists, but tools is not exists!", Warning)
+                    logger.warning(f"oligo origin is exists, but tools is not exists!")
 
             if not all(value == '' or value is None or (isinstance(value, (list, dict)) and not value) for value in self.target.values()):
                 str_w = ""
@@ -304,7 +305,7 @@ class OLIGO:
                 if not all(value == '' or value is None or (isinstance(value, (list, dict)) and not value) for value in self.target_tools.values()):
                     f.write(f"#origin_tools\t" + ";".join([self.target_tools["tools"], self.target_tools["version"], self.target_tools["params"]]) + "\n")
                 else:
-                    warnings.warn(f"oligo origin is exists, but tools is not exists!", Warning)
+                    logger.warning(f"oligo origin is exists, but tools is not exists!")
             
             if not all(value == '' or value is None or (isinstance(value, (list, dict)) and not value) for value in self.negative.values()):
                 str_w = ""
@@ -321,7 +322,7 @@ class OLIGO:
                 if not all(value == '' or value is None or (isinstance(value, (list, dict)) and not value) for value in self.negative_tools.values()):
                     f.write(f"#negative_tools\t" + ";".join([self.negative_tools["tools"], self.negative_tools["version"], self.negative_tools["params"]]) + "\n")
                 else:
-                    warnings.warn(f"oligo negative is exists, but tools is not exists!", Warning)
+                    logger.warning(f"oligo negative is exists, but tools is not exists!")
 
 
             if not all(value == '' or value is None or (isinstance(value, (list, dict)) and not value) for value in self.temp.values()):
@@ -331,7 +332,7 @@ class OLIGO:
                 if not all(value == '' or value is None or (isinstance(value, (list, dict)) and not value) for value in self.temp.values()):
                     f.write(f"#temp_tools\t" + ";".join([self.temp["tools"], self.temp["version"], self.temp["params"]]) + "\n")
                 else:
-                    warnings.warn(f"oligo temp is exists, but tools is not exists!", Warning)
+                    logger.warning(f"oligo temp is exists, but tools is not exists!")
 
             if not all(value == '' or value is None or (isinstance(value, (list, dict)) and not value) for value in self.ss.values()):
                 low = str(self.ss["low"])
@@ -340,7 +341,7 @@ class OLIGO:
                 if not all(value == '' or value is None or (isinstance(value, (list, dict)) and not value) for value in self.ss.values()):
                     f.write(f"#ss_tools\t" + ";".join([self.ss["tools"], self.ss["version"], self.ss["params"]]) + "\n")
                 else:
-                    warnings.warn(f"oligo ss is exists, but tools is not exists!", Warning)
+                    logger.warning(f"oligo ss is exists, but tools is not exists!")
             if self.date:
                 f.write(f"#date\t{self.date}\n")
             if self.author:
@@ -454,6 +455,7 @@ class OLIGO5:
                     oligos = []
                 for dataset_name in f[group]:
                     if dataset_name in oligos_name:
+                        logger.error(f"{dataset_name} already exists in {group}")
                         raise ValueError(f"{dataset_name} already exists in {group}")
                     else:
                         dataset = f[group][dataset_name]
