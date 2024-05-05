@@ -62,3 +62,7 @@ from oligo import OLIGO,OLIGO5
 
 - [oligo](https://github.com/iOLIGO/oligo/blob/main/docs/oligo.md)
 - [oligo5](https://github.com/iOLIGO/oligo/blob/main/docs/oligo5.md)
+
+### jupyter sample
+
+more sample: https://github.com/iOLIGO/oligo/blob/main/tests/oligo.ipynb

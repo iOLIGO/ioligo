@@ -45,8 +45,6 @@ oligo -ft OstoO5 -od test_data/oligo -n5 test_cli_dir -ot test_data/oligo
 oligo -ft O5toOs -o5 test_data/oligo/test_cli_dir.oligo5 -ot test_data/oligo/O5toOs_cli
 ```
 
-more sample: https://github.com/iOLIGO/oligo/blob/main/tests/oligo.ipynb
-
 ### API
 
 ```python
@@ -60,3 +58,8 @@ from oligo import OLIGO,OLIGO5
 
 - [oligo](https://github.com/iOLIGO/oligo/blob/main/docs/oligo.md)
 - [oligo5](https://github.com/iOLIGO/oligo/blob/main/docs/oligo5.md)
+
+
+### jupyter sample
+
+more sample: https://github.com/iOLIGO/oligo/blob/main/tests/oligo.ipynb
