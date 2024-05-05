@@ -1,0 +1,27 @@
+#name	sample
+#group	G-sample
+#type	DNA
+#origin	hg19,mm10;gtf1,gtf2;1:chr1:0:5000:+,1:chr2:2000:3000:-
+#origin_tools	tools1,tools2;version1,version2;params1,params2
+#origin_tools	hg19,mm10;gtf1,gtf2;chr1:100:2000:+
+#origin_tools	tools1,tools2;version1,version2;params1,params2
+#negative	fa1,fa2,fa3;gtf3,gtf4,gtf3,gtf4
+#negative_tools	blast,blast;v1.0,v1.0;default,default
+#temp	35.0;45.0
+#temp_tools	biopython;v1.0;default
+#ss	;0.3
+#ss_tools	nupakc;v1.0;default
+#date	20240417
+#author	wangcong
+#email	2119452560@qq.com
+#other_info	a nice oligo database
+name	oligo	temperature	secondary_structure	origin_chr	origin_start	origin_id
+seq1	AACCGGTGATCGTATAGCTAGTCGTA	40	0.11	chr1	10	1
+seq2	AACCGGTGACTGGATAGCTAGTCGTA	42	0.15	chr2	150	1
+seq3	AACCGGTGATCGTATCCGTAGTCGTA	44	0.17	chr1	200	1
+seq4	AACCGGTTGCCGTATAGCTAGTCGTA	36	0.12	chr4	10	1
+seq5	AACCGGTGATCGTAAAGCTAGTCGTA	39	0.22	chr1	1000	2
+seq6	AACCGTTAGTCGTATAGCTAGTCGTA	38	0.27	chr3	5000	2
+seq7	AACCGGTGATCGTATCCGAAGTCGTA	41	0.03	chr2	2500	2
+seq8	AACCGGTGGGACTATAGCTAGTCGTA	43	0.17	chr1	900	2
+seq9	AACCGGTGATCGTATATTGGGTCGTA	45	0.08	chr4	4000	2

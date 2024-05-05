@@ -43,7 +43,7 @@ class OLIGO:
         self.origin_tools = {"tools":[], "version":[], "params":[]}
         self.target = {"fa":[], "gtf":[], "location":[]}
         self.target_tools = {"tools":[], "version":[], "params":[]}
-        self.negative = {"fa":[], "gtf":[], "params":[]}
+        self.negative = {"fa":[], "gtf":[], "location":[]}
         self.negative_tools = {"tools":[], "version":[], "params":[]}
         self.temp = {"low":"", "high":""}
         self.temp_tools = {"tools":"", "version":"", "params":""}
@@ -247,14 +247,15 @@ class OLIGO:
         return
 
 
-    def to_oligo(self, name=None, out_dir="./"):
+    def to_oligo(self, name=None, out_dir="./", out_dir_mk="yes"):
         
         if name:
             file_name = name
         else:
             file_name = self.name
         
-        Mk_no_dir(out_dir)
+        if out_dir_mk == "yes":
+            Mk_no_dir(out_dir)
         with open(f"{out_dir}/{file_name}.oligo", "w") as f:
             if self.name:
                 f.write(f"#name\t{self.name}\n")
@@ -277,7 +278,7 @@ class OLIGO:
                 str_w = ""
                 if len(self.origin["fa"]) > 0:
                     str_w = str_w + ",".join(self.origin["fa"])
-                if len(self.origin)["gtf"] > 0:
+                if len(self.origin["gtf"]) > 0:
                     str_w = str_w + ";" + ",".join(self.origin["gtf"])
                 else:
                     str_w = str_w + ";"
@@ -286,7 +287,7 @@ class OLIGO:
                 f.write(f"#origin\t{str_w}\n")
                 
                 if not all(value == '' or value is None or (isinstance(value, (list, dict)) and not value) for value in self.origin_tools.values()):
-                    f.write(f"#origin_tools\t" + ";".join([self.origin_tools["tools"], self.origin_tools["version"], self.origin_tools["params"]]) + "\n")
+                    f.write(f"#origin_tools\t" + ";".join([",".join(self.origin_tools["tools"]), ",".join(self.origin_tools["version"]), ",".join(self.origin_tools["params"])]) + "\n")
                 else:
                     logger.warning(f"oligo origin is exists, but tools is not exists!")
 
@@ -294,7 +295,7 @@ class OLIGO:
                 str_w = ""
                 if len(self.target["fa"]) > 0:
                     str_w = str_w + ",".join(self.target["fa"])
-                if len(self.target)["gtf"] > 0:
+                if len(self.target["gtf"]) > 0:
                     str_w = str_w + ";" + ",".join(self.target["gtf"])
                 else:
                     str_w = str_w + ";"
@@ -303,7 +304,7 @@ class OLIGO:
                 f.write(f"#origin_tools\t{str_w}\n")
                 
                 if not all(value == '' or value is None or (isinstance(value, (list, dict)) and not value) for value in self.target_tools.values()):
-                    f.write(f"#origin_tools\t" + ";".join([self.target_tools["tools"], self.target_tools["version"], self.target_tools["params"]]) + "\n")
+                    f.write(f"#origin_tools\t" + ";".join([",".join(self.target_tools["tools"]), ",".join(self.target_tools["version"]), ",".join(self.target_tools["params"])]) + "\n")
                 else:
                     logger.warning(f"oligo origin is exists, but tools is not exists!")
             
@@ -311,7 +312,7 @@ class OLIGO:
                 str_w = ""
                 if len(self.negative["fa"]) > 0:
                     str_w = str_w + ",".join(self.negative["fa"])
-                if len(self.negative)["gtf"] > 0:
+                if len(self.negative["gtf"]) > 0:
                     str_w = str_w + ";" + ",".join(self.negative["gtf"])
                 else:
                     str_w = str_w + ";"
@@ -320,7 +321,7 @@ class OLIGO:
                 f.write(f"#negative\t{str_w}\n")
                 
                 if not all(value == '' or value is None or (isinstance(value, (list, dict)) and not value) for value in self.negative_tools.values()):
-                    f.write(f"#negative_tools\t" + ";".join([self.negative_tools["tools"], self.negative_tools["version"], self.negative_tools["params"]]) + "\n")
+                    f.write(f"#negative_tools\t" + ";".join([",".join(self.negative_tools["tools"]), ",".join(self.negative_tools["version"]), ",".join(self.negative_tools["params"])]) + "\n")
                 else:
                     logger.warning(f"oligo negative is exists, but tools is not exists!")
 
@@ -330,7 +331,7 @@ class OLIGO:
                 high = str(self.temp["high"])
                 f.write(f"#temp\t{low};{high}\n")
                 if not all(value == '' or value is None or (isinstance(value, (list, dict)) and not value) for value in self.temp.values()):
-                    f.write(f"#temp_tools\t" + ";".join([self.temp["tools"], self.temp["version"], self.temp["params"]]) + "\n")
+                    f.write(f"#temp_tools\t" + ";".join([self.temp_tools["tools"], self.temp_tools["version"], self.temp_tools["params"]]) + "\n")
                 else:
                     logger.warning(f"oligo temp is exists, but tools is not exists!")
 
@@ -339,7 +340,7 @@ class OLIGO:
                 high = str(self.ss["high"])
                 f.write(f"#ss\t{low};{high}\n")
                 if not all(value == '' or value is None or (isinstance(value, (list, dict)) and not value) for value in self.ss.values()):
-                    f.write(f"#ss_tools\t" + ";".join([self.ss["tools"], self.ss["version"], self.ss["params"]]) + "\n")
+                    f.write(f"#ss_tools\t" + ";".join([self.ss_tools["tools"], self.ss_tools["version"], self.ss_tools["params"]]) + "\n")
                 else:
                     logger.warning(f"oligo ss is exists, but tools is not exists!")
             if self.date:
@@ -406,7 +407,7 @@ class OLIGO5:
         for group, oligos in self.oligos.items():
             Mk_no_dir(f"{out_dir}/{group}")
             for oligo in oligos:
-                oligo.to_oligo(f"{out_dir}/{group}")
+                oligo.to_oligo(out_dir=f"{out_dir}/{group}", out_dir_mk="no")
 
 
     def to_oligo5(self, name=None, out_dir="./"):
@@ -512,7 +513,7 @@ class OLIGO5:
             oligo = OLIGO()
             oligo.read(oligo_file)
             list_oligos.append(oligo)
-        self.read_soligo(list_oligos)
+        self.read_soligo(*list_oligos)
         return
     
 
@@ -520,7 +521,7 @@ class OLIGO5:
 
         import glob
         oligo_files = glob.glob(f"{oligo_dir}/*.oligo")       
-        self.read_foligo(oligo_files)
+        self.read_foligo(*oligo_files)
 
         return
     
@@ -537,9 +538,12 @@ class OLIGO5:
     
     def info(self, info_file=None):
         if info_file:
-            info_file_ = info_file
-        else:
+            info_file_ = f"{info_file}_info.tsv"
+        elif self.name:
             info_file_ = f"{self.name}_info.tsv"
+        else:
+            logger.error("oligo5 name and info name are not exists")
+            raise ValueError("oligo5 name and info name are not exists")
         with open(info_file_, "w") as f:
             f.write("groups\toligos\tnumbers\n")
             for group, oligos in self.oligos.items():
@@ -548,7 +552,7 @@ class OLIGO5:
                 for oligo in oligos:
                     oligo_names.append(oligo.name)
                     oligo_numbers.append(str(oligo.data.shape[0]))
-                f.write(f"{group}\t{",".join(oligo_names)}\t{",".join(oligo_numbers)}\n")
+                f.write(f'{group}\t{",".join(oligo_names)}\t{",".join(oligo_numbers)}\n')
 
         return
 

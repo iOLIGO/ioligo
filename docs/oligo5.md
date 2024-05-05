@@ -15,7 +15,7 @@ Python object composed of oligo.
 from oligo import OLIGO5
 
 oligo5_test = OLIGO5("test")
-oligo5_file = "tests/test_data/oligo/sample.oligo5"
+oligo5_file = "tests/test_data/oligo/test.oligo5"
 oligo5_test.read(oligo5_file)
 
 oligo5_test.name
@@ -63,4 +63,24 @@ oligos_dir = "./test"
 from oligo import OLIGO5
 oligo5_test = OLIGO5("test")
 oligo5_test.read_doligo(oligos_dir)
+```
+
+- Perform statistics on data sets in oligo5
+
+```python
+oligo5_test.info("test_data/oligo/doligo5")
+```
+
+- Output as oligo5 file
+
+```python
+
+oligo5.to_oligo5("test_data/oligo/doligo")
+
+```
+
+- Output as oligo dir
+
+```python
+oligo5.to_oligo("test_data/oligo/O5toO")
 ```
