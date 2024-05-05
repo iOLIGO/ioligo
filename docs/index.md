@@ -45,7 +45,7 @@ oligo -ft OstoO5 -od test_data/oligo -n5 test_cli_dir -ot test_data/oligo
 oligo -ft O5toOs -o5 test_data/oligo/test_cli_dir.oligo5 -ot test_data/oligo/O5toOs_cli
 ```
 
-more sample: 
+more sample: https://github.com/iOLIGO/oligo/blob/main/tests/oligo.ipynb
 
 ### API
 
