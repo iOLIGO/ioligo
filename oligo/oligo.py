@@ -49,6 +49,7 @@ class OLIGO:
         self.temp_tools = {"tools":"", "version":"", "params":""}
         self.ss = {"low":"", "high":""}
         self.ss_tools = {"tools":"", "version":"", "params":""}
+        self.add = []
     
 
     def tsv_read(self, header, data):
@@ -136,6 +137,8 @@ class OLIGO:
                     self.email = value
                 elif feature == "other_info":
                     self.other_info = value
+                elif feature == "add":
+                    self.add = value.split(";")
                 else:
                     logger.warning(f"{feature} is not in oligo format, will be ignored!", Warning)
         
@@ -233,6 +236,8 @@ class OLIGO:
                         self.email = value
                     elif feature == "other_info":
                         self.other_info = value
+                    elif feature == "add":
+                        self.add = value.split(";")
                     else:
                         logger.warning(f"{feature} is not in oligo format, will be ignored!")
                 else:
@@ -349,6 +354,8 @@ class OLIGO:
                 f.write(f"#author\t{self.author}\n")
             if self.email:
                 f.write(f"#email\t{self.email}\n")
+            if len(self.add) > 0:
+                f.write(f"#add\t" + ";".join(self.add) + "\n")
             if self.other_info:
                 f.write(f"#other_info\t{self.other_info}\n")
 
@@ -389,6 +396,7 @@ class OLIGO:
             dataset.attrs["author"] = self.author
             dataset.attrs["email"] = self.email
             dataset.attrs["other_info"] = self.other_info
+            dataset.attrs["add"] = self.add
             dataset.attrs["columns"] = json.dumps({col: str(dtype) for col, dtype in self.data.dtypes.items()})
     
     def help():
@@ -440,6 +448,7 @@ class OLIGO5:
                     dataset.attrs["author"] = oligo.author
                     dataset.attrs["email"] = oligo.email
                     dataset.attrs["other_info"] = oligo.other_info
+                    dataset.attrs["add"] = self.add
                     dataset.attrs["columns"] = json.dumps({col: str(dtype) for col, dtype in oligo.data.dtypes.items()})
     
     
@@ -478,6 +487,7 @@ class OLIGO5:
                         oligo.author = dataset.attrs["author"]
                         oligo.email = dataset.attrs["email"]
                         oligo.other_info = dataset.attrs["other_info"]
+                        oligo.add = dataset.attrs["add"]
                         np_data = dataset.asstr()[:]
                         columns_dict = json.loads(dataset.attrs["columns"])
                         df_data = pd.DataFrame(np_data, columns=columns_dict.keys())

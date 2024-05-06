@@ -55,6 +55,7 @@ All start with '#', which records the characteristic information of the oligonuc
 |date|info|20240423|
 |author|info|ilead-cong|
 |email|info|2119452560@qq.com|
+|add|info|add-5'-AATTCC|
 |other_info|info|nice oligo|
 
 
