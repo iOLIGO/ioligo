@@ -55,7 +55,7 @@ All start with '#', which records the characteristic information of the oligonuc
 |date|info|20240423|
 |author|info|ilead-cong|
 |email|info|2119452560@qq.com|
-|add|info|add-5'-AATTCC|
+|add|info|5'-AATTCC|
 |other_info|info|nice oligo|
 
 
@@ -81,7 +81,7 @@ The source of oligonucleotides, including genome, annotation, and location. The 
 
 - location: Record the identity information of the reference genome location information,separated by commas, like '`{location1,location2,location3}`'.
 
-- more info: The location attribute consists of genomeid, chromosome name, starting position, ending position, and positive and negative strands, separated by colons, like '`{geonemid,chrom,start,end,strand}`' or '`{genomeid,all}`'.
+- more info: The location attribute consists of genomeid, chromosome name, starting position, ending position, and positive and negative [strands](https://www.biostars.org/p/3423/), separated by colons, like '`{geonemid,chrom,start,end,strand}`' or '`{genomeid,all}`'.
 
 ### target
 
@@ -132,6 +132,10 @@ Creator of oligonucleotide generation
 ### email
 
 The creator's email address of the oligonucleotide generated
+
+### add
+
+Add fixed sequence at the 3' or 5' end of the oligo sequence
 
 ### other_info
 
