@@ -251,6 +251,13 @@ class OLIGO:
 
         return
 
+    def check(self, *names):
+        columns_name = list(self.data.columns)
+        for name in names:
+            if name not in columns_name:
+                logger.error(f"The keyword({name}) is missing, please check the data attribute of toligo!!!")
+                raise ValueError(f"The keyword({name}) is missing, please check the data attribute of toligo!!!")
+        return
 
     def to_oligo(self, name=None, out_dir="./", out_dir_mk="yes"):
         
