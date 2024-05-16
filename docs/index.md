@@ -1,8 +1,3 @@
-<div align="center">
-
-<img src="./imgs/oligo_logo.png">
-
-</div>
 
 # oligo
 
