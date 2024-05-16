@@ -58,8 +58,8 @@ from oligo import OLIGO,OLIGO5
 
 ### More usage help
 
-- [oligo](https://github.com/iOLIGO/oligo/blob/main/docs/oligo.md)
-- [oligo5](https://github.com/iOLIGO/oligo/blob/main/docs/oligo5.md)
+- [oligo](./oligo.md)
+- [oligo5](./oligo5.md)
 
 
 ### jupyter sample
