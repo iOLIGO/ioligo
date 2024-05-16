@@ -1,14 +1,6 @@
-<div align="center">
-
-<img src="./imgs/oligo_logo.png">
-
-<p> Oligo is essentially a txt file, contains head and body. Sample file is in path(tests/test_data/test.oligo) </p>
-
-</div>
-
 ## OLIGO
 
-Python object for reading oligo files
+Python object for reading oligo files. Oligo is essentially a txt file, contains head and body. Sample file is in path(tests/test_data/test.oligo)
 
 ```python
 
