@@ -40,6 +40,8 @@ All start with '#', which records the characteristic information of the oligonuc
 |origin_tools|tools|bowtie2;v1.0;default|
 |negative|negative region|mm10;;1:chr2:1:10000:-|
 |negative_tools|tools|blast;v1.0;default|
+|hkmer|hkmer jf|mm10;;|
+|hkmer_tools|tools|jellyfish;v1.0;default|
 |temp|Binding temperature range|35;45|
 |temp_tools|tools|nupcak;v1.0;default|
 |ss|secondary structures range|0;0.3|
