@@ -45,6 +45,8 @@ class OLIGO:
         self.target_tools = {"tools":[], "version":[], "params":[]}
         self.negative = {"fa":[], "gtf":[], "location":[]}
         self.negative_tools = {"tools":[], "version":[], "params":[]}
+        self.hkmer = {"fa":[], "gtf":[], "location":[]}
+        self.hkmer_tools = {"tools":[], "version":[], "params":[]}
         self.temp = {"low":"", "high":""}
         self.temp_tools = {"tools":"", "version":"", "params":""}
         self.ss = {"low":"", "high":""}
@@ -109,6 +111,20 @@ class OLIGO:
                         self.negative_tools["version"] += value.split(";")[1].split(",")
                     if len_value > 2:
                         self.negative_tools["params"] += value.split(";")[2].split(",")
+                elif feature == "hkmer":
+                    if len_value > 0:
+                        self.hkmer["fa"] += value.split(";")[0].split(",")
+                    if len_value > 1:
+                        self.hkmer["gtf"] += value.split(";")[1].split(",")
+                    if len_value > 1:
+                        self.hkmer["gtf"] += value.split(";")[1].split(",")
+                elif feature == "hkmer_tools":
+                    if len_value > 0:
+                        self.hkmer_tools["tools"] += value.split(";")[0].split(",")
+                    if len_value > 1:
+                        self.hkmer_tools["version"] += value.split(";")[1].split(",")
+                    if len_value > 2:
+                        self.hkmer_tools["params"] += value.split(";")[2].split(",")
                 elif feature == "temp":
                     if len_value > 0:
                         if value.split(";")[0]:
@@ -208,6 +224,21 @@ class OLIGO:
                             self.negative_tools["version"] += value.split(";")[1].split(",")
                         if len_value > 2:
                             self.negative_tools["params"] += value.split(";")[2].split(",")
+                    elif feature == "hkmer":
+                        if len_value > 0:
+                            self.hkmer["fa"] += value.split(";")[0].split(",")
+                        if len_value > 1:
+                            if value.split(";")[1]:
+                                self.hkmer["gtf"] += value.split(";")[1].split(",")
+                        if len_value > 1:
+                            self.hkmer["gtf"] += value.split(";")[1].split(",")
+                    elif feature == "hkmer_tools":
+                        if len_value > 0:
+                            self.hkmer_tools["tools"] += value.split(";")[0].split(",")
+                        if len_value > 1:
+                            self.hkmer_tools["version"] += value.split(";")[1].split(",")
+                        if len_value > 2:
+                            self.hkmer_tools["params"] += value.split(";")[2].split(",")
                     elif feature == "temp":
                         if len_value > 0:
                             if value.split(";")[0]:
@@ -337,6 +368,23 @@ class OLIGO:
                 else:
                     logger.warning(f"oligo negative is exists, but tools is not exists!")
 
+            if not all(value == '' or value is None or (isinstance(value, (list, dict)) and not value) for value in self.hkmer.values()):
+                str_w = ""
+                if len(self.hkmer["fa"]) > 0:
+                    str_w = str_w + ",".join(self.hkmer["fa"])
+                if len(self.hkmer["gtf"]) > 0:
+                    str_w = str_w + ";" + ",".join(self.hkmer["gtf"])
+                else:
+                    str_w = str_w + ";"
+                if len(self.hkmer["location"]) > 0:
+                    str_w = str_w + ";" + ",".join(self.hkmer["location"])
+                f.write(f"#hkmer\t{str_w}\n")
+                
+                if not all(value == '' or value is None or (isinstance(value, (list, dict)) and not value) for value in self.hkmer_tools.values()):
+                    f.write(f"#hkmer_tools\t" + ";".join([",".join(self.kmer_tools["tools"]), ",".join(self.kmer_tools["version"]), ",".join(self.kmer_tools["params"])]) + "\n")
+                else:
+                    logger.warning(f"oligo hkmer is exists, but tools is not exists!")
+
 
             if not all(value == '' or value is None or (isinstance(value, (list, dict)) and not value) for value in self.temp.values()):
                 low = str(self.temp["low"])
@@ -395,6 +443,8 @@ class OLIGO:
             dataset.attrs["target_tools"] = json.dumps(self.target_tools)
             dataset.attrs["negative"] = json.dumps(self.negative)
             dataset.attrs["negative_tools"] = json.dumps(self.negative_tools)
+            dataset.attrs["hkmer"] = json.dumps(self.hkmer)
+            dataset.attrs["hkmer_tools"] = json.dumps(self.hkmer_tools)
             dataset.attrs["temp"] = json.dumps(self.temp)
             dataset.attrs["temp_tools"] = json.dumps(self.temp_tools)
             dataset.attrs["ss"] = json.dumps(self.ss)
@@ -447,6 +497,8 @@ class OLIGO5:
                     dataset.attrs["target_tools"] = json.dumps(oligo.target_tools)
                     dataset.attrs["negative"] = json.dumps(oligo.negative)
                     dataset.attrs["negative_tools"] = json.dumps(oligo.negative_tools)
+                    dataset.attrs["hkmer"] = json.dumps(oligo.hkmer)
+                    dataset.attrs["hkmer_tools"] = json.dumps(oligo.hkmer_tools)
                     dataset.attrs["temp"] = json.dumps(oligo.temp)
                     dataset.attrs["temp_tools"] = json.dumps(oligo.temp_tools)
                     dataset.attrs["ss"] = json.dumps(oligo.ss)
@@ -486,6 +538,8 @@ class OLIGO5:
                         oligo.target_tools = json.loads(dataset.attrs["target_tools"])
                         oligo.negative = json.loads(dataset.attrs["negative"])
                         oligo.negative_tools = json.loads(dataset.attrs["negative_tools"])
+                        oligo.hkmer = json.loads(dataset.attrs["hkmer"])
+                        oligo.hkmer_tools = json.loads(dataset.attrs["hkmer_tools"])
                         oligo.temp = json.loads(dataset.attrs["temp"])
                         oligo.temp_tools = json.loads(dataset.attrs["temp_tools"])
                         oligo.ss = json.loads(dataset.attrs["ss"])

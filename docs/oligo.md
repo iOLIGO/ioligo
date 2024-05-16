@@ -91,6 +91,10 @@ The target region targeted by the oligonucleotide. The format refers to the orig
 
 The negative target region targeted by the oligonucleotide. The format refers to the origin attribute.
 
+### hkmer
+
+The [high frequency k-mers](https://github.com/gmarcais/Jellyfish/blob/master/doc/Readme.md#Counting-high-frequency-k-mers) target region targeted by the oligonucleotide. The format refers to the origin attribute.
+
 ### origin_tools
 
 Record the tools used by origin, including tool name, version, and parameters, separated by semicolons, like '`{tools;version;params}`' or '`{tools1,tools2;version1,version2;param1,param2}`'.
@@ -104,6 +108,10 @@ Record the tools used by target, the format refers to the origin_tools attribute
 ### negative_tools
 
 Record the tools used by negative, the format refers to the origin_tools attribute.
+
+### hkmer_tools
+
+Record the tools used by hkmer, the format refers to the hkmer_tools attribute.
 
 ### temp
 
