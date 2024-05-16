@@ -75,7 +75,7 @@ The source of oligonucleotides, including genome, annotation, and location. The 
 
 - location: Record the identity information of the reference genome location information,separated by commas, like '`{location1,location2,location3}`'.
 
-- more info: The location attribute consists of genomeid, chromosome name, starting position, ending position, and positive and negative [strands](https://www.biostars.org/p/3423/), separated by colons, like '`{geonemid,chrom,start,end,strand}`' or '`{genomeid,all}`'.
+- more info: The location attribute consists of genomeid, chromosome name, starting position, ending position, and positive and [strands](https://www.biostars.org/p/3423/), separated by colons, like '`{geonemid,chrom,start,end,strand}`' or '`{genomeid,all}`'.If the strand value in the location does not exist, the default is the `+` strand.
 
 ### target
 
