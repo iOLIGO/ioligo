@@ -5,7 +5,7 @@ Python object composed of oligo. The oligo database file based on the h5 file st
 
 ```python
 
-from oligo import OLIGO5
+from ioligo import OLIGO5
 
 oligo5_test = OLIGO5("test")
 oligo5_file = "tests/test_data/oligo/test.oligo5"
@@ -44,7 +44,7 @@ oligo5_test.info()
 oligo1 = "./test.oligo"
 oligo2 = "./test/test2.oligo"
 oligo3 = "./test/test3.oligo"
-from oligo import OLIGO5
+from ioligo import OLIGO5
 oligo5_test = OLIGO5("test")
 oligo5_test.read_foligo(oligo1, oligo2, oligo3)
 ```
@@ -53,7 +53,7 @@ oligo5_test.read_foligo(oligo1, oligo2, oligo3)
 
 ```python
 oligos_dir = "./test"
-from oligo import OLIGO5
+from ioligo import OLIGO5
 oligo5_test = OLIGO5("test")
 oligo5_test.read_doligo(oligos_dir)
 ```

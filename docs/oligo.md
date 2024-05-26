@@ -4,7 +4,7 @@ Python object for reading oligo files. Oligo is essentially a txt file, contains
 
 ```python
 
-from oligo import OLIGO
+from ioligo import OLIGO
 oligo_file = "tests/test_data/oligo/test.oligo"
 oligo_test = OLIGO()
 oligo_test.read(oligo_file)

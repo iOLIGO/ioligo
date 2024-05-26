@@ -455,9 +455,10 @@ class OLIGO:
             dataset.attrs["other_info"] = self.other_info
             dataset.attrs["add"] = self.add
             dataset.attrs["columns"] = json.dumps({col: str(dtype) for col, dtype in self.data.dtypes.items()})
+
     
-    def help():
-        print("more info: https://github.com/iOLIGO/oligo/blob/main/docs/oligo.md")
+    def help(self):
+        print("oligo toolkit, more info: https://ioligo.github.io/ioligo/")
 
 
 class OLIGO5:
@@ -627,5 +628,5 @@ class OLIGO5:
 
         return
 
-    def help():
-        print("more info: https://github.com/iOLIGO/oligo/blob/main/docs/oligo5.md")
+    def help(self):
+        print("oligo toolkit, more info: https://ioligo.github.io/ioligo/")

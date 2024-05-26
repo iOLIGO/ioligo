@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
-from oligo.oligo import OLIGO, OLIGO5
+from ioligo.oligo import OLIGO, OLIGO5
 from loguru import logger
 import argparse
 
 def run():
-    argparser_oligo = argparse.ArgumentParser(description="oligo file to OLIGO5 format, or oligo5 file to oligo format")
+    argparser_oligo = argparse.ArgumentParser(description="oligo file to OLIGO5 format, or oligo5 file to oligo format, more info: https://ioligo.github.io/ioligo/")
     argparser_oligo.add_argument("-ft", "--format_type",choices=['OstoO5', 'O5toOs'], dest="ft",
                             help="file in format: ")
     argparser_oligo.add_argument("-o", "--oligo", default=None, dest="oligo",

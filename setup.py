@@ -13,8 +13,7 @@ classifiers = [
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
     "Intended Audience :: Science/Research",
     "Topic :: Scientific/Engineering :: Bio-Informatics",
-    "Topic :: Scientific/Engineering :: oligo",
-    "Topic :: Scientific/Engineering :: probes",
+    "Topic :: Scientific/Engineering :: Information Analysis"
 ]
 
 keywords = [
@@ -24,7 +23,7 @@ keywords = [
 ]
 
 def get_version():
-    with open("oligo/__init__.py") as f:
+    with open("ioligo/__init__.py") as f:
         for line in f.readlines():
             m = re.match("__version__ = '([^']+)'", line)
             if m:
@@ -33,7 +32,7 @@ def get_version():
     
 
 def get_long_description():
-    return "See https://github.com/iOLIGO/oligo"
+    return "See https://github.com/iOLIGO/ioligo"
 
 def get_install_requires():
     requirements = []
@@ -44,7 +43,7 @@ def get_install_requires():
 
 
 setup(
-    name='oligo',
+    name='ioligo',
     author='cong wang',
     author_email='2119452560@qq.com',
     version=get_version(),
@@ -52,9 +51,9 @@ setup(
     description='oligo toolkit.',
     long_description=get_long_description(),
     keywords=keywords,
-    url='https://github.com/iOLIGO/oligo',
+    url='https://github.com/iOLIGO/ioligo',
     packages=find_packages(),
-    scripts=['scripts/oligo'],
+    scripts=['scripts/ioligo'],
     include_package_data=True,
     zip_safe=False,
     classifiers=classifiers,
